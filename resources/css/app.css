@@ -1,0 +1,464 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+:root {
+    color-scheme: dark;
+    font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    background: #0b1020;
+    color: #f3f6ff;
+    font-synthesis: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background:
+        radial-gradient(ellipse at 15% 0%, rgb(45 71 151 / 28%), transparent 38rem),
+        #0b1020;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button,
+.button {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    background: #87f7d4;
+    color: #08131b;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button:hover,
+.button:hover {
+    background: #b3ffe9;
+}
+
+input {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid #34415e;
+    border-radius: 10px;
+    padding: 0.7rem 0.85rem;
+    background: #10182a;
+    color: #f3f6ff;
+}
+
+input:focus-visible,
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid #87f7d4;
+    outline-offset: 3px;
+}
+
+.lobby-shell,
+.room-shell {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 2.5rem 0 4rem;
+}
+
+.eyebrow {
+    margin: 0 0 0.5rem;
+    color: #87f7d4;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+}
+
+.page-heading {
+    margin: 0 0 1.75rem;
+    font-size: clamp(2rem, 6vw, 4rem);
+    letter-spacing: -0.055em;
+}
+
+.panel {
+    border: 1px solid #27334c;
+    border-radius: 18px;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    background: rgb(16 24 42 / 90%);
+    box-shadow: 0 18px 50px rgb(0 0 0 / 20%);
+}
+
+.lobby-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+    gap: 1rem;
+}
+
+.panel h2 {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+}
+
+.stack {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.inline-form {
+    display: flex;
+    gap: 0.65rem;
+}
+
+.inline-form input {
+    min-width: 0;
+}
+
+.subtle,
+.empty-state {
+    color: #a7b2ca;
+    line-height: 1.6;
+}
+
+.chat-list,
+.room-list,
+.player-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.chat-list {
+    display: flex;
+    height: 340px;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    padding-right: 0.3rem;
+}
+
+.chat-list li {
+    border: 1px solid #27334c;
+    border-radius: 12px;
+    padding: 0.7rem 0.85rem;
+    overflow-wrap: anywhere;
+    background: #131d32;
+}
+
+.chat-list strong {
+    color: #87f7d4;
+}
+
+.chat-list p {
+    margin: 0.35rem 0;
+    white-space: pre-wrap;
+}
+
+.chat-list time {
+    color: #8491ad;
+    font-size: 0.75rem;
+}
+
+.room-list {
+    display: grid;
+    gap: 0.7rem;
+    margin-top: 1.25rem;
+}
+
+.room-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-top: 1px solid #27334c;
+    padding-top: 0.75rem;
+}
+
+.room-code {
+    color: #87f7d4;
+    font-family: ui-monospace, monospace;
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+}
+
+.room-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.room-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.7fr);
+    gap: 1rem;
+}
+
+.game-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    align-items: start;
+    gap: 1rem;
+}
+
+.game-panel {
+    min-width: 0;
+    padding: 0.75rem;
+}
+
+.game-canvas {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1px solid #34415e;
+    border-radius: 12px;
+    background: #172436;
+    touch-action: none;
+}
+
+.game-status {
+    min-height: 1.5rem;
+    color: #ffbf80;
+    font-size: 0.9rem;
+}
+
+.game-hud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin: 0.4rem 0 0.75rem;
+}
+
+.game-hud span {
+    border: 1px solid #34415e;
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    background: #131d32;
+    color: #a7b2ca;
+    font-size: 0.85rem;
+}
+
+.game-hud strong {
+    color: #87f7d4;
+    font-variant-numeric: tabular-nums;
+}
+
+.weapon-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.weapon-bar button {
+    min-height: 40px;
+    border: 1px solid #34415e;
+    background: #172436;
+    color: #f3f6ff;
+}
+
+.weapon-bar button[aria-pressed='true'] {
+    border-color: #87f7d4;
+    background: #183a3a;
+    color: #87f7d4;
+}
+
+.mobile-controls {
+    display: none;
+}
+
+.game-sidebar hr {
+    margin: 1.2rem 0;
+    border: 0;
+    border-top: 1px solid #27334c;
+}
+
+.game-sidebar .qr-card {
+    margin-bottom: 1rem;
+}
+
+.controls-help {
+    font-size: 0.85rem;
+}
+
+.qr-card {
+    display: grid;
+    justify-items: center;
+    gap: 0.8rem;
+    border-radius: 14px;
+    padding: 1rem;
+    background: #fff;
+    color: #101827;
+    text-align: center;
+}
+
+.qr-card canvas {
+    max-width: 100%;
+}
+
+.player-list {
+    display: grid;
+    gap: 0.6rem;
+}
+
+.player-list li {
+    border-radius: 9px;
+    padding: 0.7rem;
+    background: #131d32;
+}
+
+.status {
+    min-height: 1.5rem;
+    color: #ffbf80;
+}
+
+.connection-status {
+    width: fit-content;
+    margin: 0.5rem 0;
+    border: 1px solid #53617a;
+    border-radius: 999px;
+    padding: 0.3rem 0.65rem;
+    background: #172436;
+    color: #d6deef;
+    font-size: 0.8rem;
+}
+
+.connection-status[data-connection-state='connected'] {
+    border-color: #2c806a;
+    background: #12352f;
+    color: #a6f5dc;
+}
+
+.connection-status[data-connection-state='disconnected'],
+.connection-status[data-connection-state='failed'],
+.connection-status[data-connection-state='unknown'] {
+    border-color: #9b6549;
+    background: #39261f;
+    color: #ffd0ad;
+}
+
+.error-list {
+    margin: 0 0 1rem;
+    color: #ffaaa8;
+}
+
+@media (max-width: 760px) {
+    .lobby-grid,
+    .room-grid,
+    .game-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .lobby-shell,
+    .room-shell {
+        width: min(100% - 1rem, 600px);
+        padding-top: 1.25rem;
+    }
+
+    .inline-form {
+        flex-direction: column;
+    }
+
+    .room-topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .game-sidebar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .game-sidebar > h2:first-child,
+    .game-sidebar > p.subtle:first-of-type,
+    .game-sidebar > .player-list,
+    .game-sidebar > .status {
+        grid-column: 1;
+    }
+
+    .game-sidebar > h2:nth-of-type(2),
+    .game-sidebar > .qr-card,
+    .game-sidebar > .controls-help {
+        grid-column: 2;
+    }
+
+    .game-sidebar hr {
+        display: none;
+    }
+
+    .mobile-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.9rem 0 0.35rem;
+        touch-action: none;
+        user-select: none;
+    }
+
+    .mobile-aim-group {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+    }
+
+    .joystick {
+        position: relative;
+        display: grid;
+        width: clamp(82px, 22vw, 112px);
+        aspect-ratio: 1;
+        place-items: center;
+        border: 1px solid #50617e;
+        border-radius: 50%;
+        background: rgb(39 51 76 / 75%);
+        touch-action: none;
+    }
+
+    .joystick span {
+        width: 42%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: #87f7d4;
+        box-shadow: 0 3px 12px rgb(0 0 0 / 30%);
+        pointer-events: none;
+    }
+
+    .fire-button {
+        min-width: 76px;
+        min-height: 76px;
+        border: 3px solid #ffd3aa;
+        border-radius: 50%;
+        background: #e55e4d;
+        color: #fff;
+        touch-action: none;
+    }
+}
+
+@media (max-width: 460px) {
+    .game-sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .game-sidebar > h2,
+    .game-sidebar > p,
+    .game-sidebar > ul,
+    .game-sidebar > .qr-card {
+        grid-column: 1;
+    }
+}
